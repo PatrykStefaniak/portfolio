@@ -1,4 +1,5 @@
 'use client'
+
 import { Canvas } from '@react-three/fiber';
 import { Line, OrbitControls } from '@react-three/drei';
 
@@ -8,13 +9,13 @@ type Position = [number, number, number]
 
 type PointAndRelation = {
     position: Position
-    relatedTo: Position[]
+    relatedTo: { position: Position; distance: number }[]
 };
 
 const pointsAndRelations = ((): PointAndRelation[] => {
     const points: PointAndRelation[] = Array.from({ length: amountOfPoints }, () => {
         return {
-            position: [Math.random() * 13.5 - 6.75, Math.random() * 6.25 - 3.125, 1],
+            position: [Math.random() * 17 - 8.5, Math.random() * 7 - 3.5, 0],
             relatedTo: []
         };
     });
@@ -25,12 +26,17 @@ const pointsAndRelations = ((): PointAndRelation[] => {
         for (let j = i + 1; j < points.length; j++) {
             const targetPoint = points[j];
 
-            if (
-                targetPoint.position.every((point, index) =>
-                    Math.abs(point - currentPoint.position[index]) <= 1
-                )
-            ) {
-                currentPoint.relatedTo.push(targetPoint.position);
+            const distance = Math.sqrt(
+                Math.pow(targetPoint.position[0] - currentPoint.position[0], 2) +
+                Math.pow(targetPoint.position[1] - currentPoint.position[1], 2) +
+                Math.pow(targetPoint.position[2] - currentPoint.position[2], 2)
+            );
+
+            if (distance <= 1) {
+                currentPoint.relatedTo.push({
+                    position: targetPoint.position,
+                    distance: distance
+                });
             }
         }
     }
@@ -55,15 +61,19 @@ export default function ThreeBackground() {
                                 <meshStandardMaterial color="white" />
                             </mesh>
                             {
-                                pointAndRelations.relatedTo.map((targetPoint, targetIndex) => {
+                                pointAndRelations.relatedTo.map((targetData, targetIndex) => {
+                                    const opacity = -1 * targetData.distance + 1.15;
+
                                     return (
                                         <Line
+                                            transparent
+                                            opacity={opacity > 1 ? 1 : opacity}
                                             key={index + "relation" + targetIndex}
                                             linewidth={1}
-                                            color="white"
+                                            color="rgb(0, 225, 255)"
                                             points={[
                                                 pointAndRelations.position,
-                                                targetPoint
+                                                targetData.position
                                             ]}
                                         />
                                     );
@@ -73,7 +83,7 @@ export default function ThreeBackground() {
                     )
                 })
             }
-            <OrbitControls />
+            {/* <OrbitControls /> */}
         </Canvas>
     );
 };
