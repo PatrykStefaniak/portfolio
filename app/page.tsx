@@ -1,4 +1,4 @@
-import ThreeBackground from "@/components/three/ThreeBackground";
+import ThreeBackground from "@/components/three/Background";
 
 export default function Home() {
     return (
