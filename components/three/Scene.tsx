@@ -50,22 +50,25 @@ export default function Scene() {
             if (!mesh) {
                 return;
             }
-            
-            const dx = mesh.position.x - mouseX;
-            const dy = mesh.position.y - mouseY;
+
+            const position = mesh.position;
+            const dx = position.x - mouseX;
+            const dy = position.y - mouseY;
+
             const distance = Math.sqrt(dx * dx + dy * dy);
             
             if (distance < 1) {
                 const currentPos = pointsAndRelations[i].currentPosition;
                 const angle = Math.atan2(dy, dx);
+                const strengh =  Math.min(0.05 * (1 - distance) / (distance * distance), 0.12);
 
-                mesh.position.x = currentPos[0] + Math.cos(angle) * .03;
-                mesh.position.y = currentPos[1] + Math.sin(angle) * .03;
+                position.x = currentPos[0] + Math.cos(angle) * strengh;
+                position.y = currentPos[1] + Math.sin(angle) * strengh;
             } else {
                 const originalPos = pointsAndRelations[i].position;
 
-                mesh.position.x += (originalPos[0] - mesh.position.x) * 0.01;
-                mesh.position.y += (originalPos[1] - mesh.position.y) * 0.01;
+                position.x += (position.x - originalPos[0]) * -0.02;
+                position.y += (position.y - originalPos[1]) * -0.02;
             }
 
             pointsAndRelations[i].currentPosition = [mesh.position.x, mesh.position.y, mesh.position.z];
