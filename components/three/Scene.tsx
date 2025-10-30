@@ -1,8 +1,8 @@
 'use client'
 
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useState } from 'react';
-import { Mesh } from 'three';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Mesh, Vector3 } from 'three';
 import DynamicLine from './DynamicLine';
 import { getPointsAndRelations } from '@/lib/utils';
 
@@ -11,6 +11,20 @@ const pointsAndRelations = getPointsAndRelations(AMOUNT_OF_POINTS);
 
 export default function Scene() {
     const [dots, setDots] = useState<Mesh[]>([]);
+    const cursorInWindowRef = useRef(true);
+
+    useEffect(() => {
+        const handleMouseEnter = () => cursorInWindowRef.current = true;
+        const handleMouseLeave = () => cursorInWindowRef.current = false;
+
+        document.addEventListener('mouseenter', handleMouseEnter);
+        document.addEventListener('mouseout', handleMouseLeave);
+
+        return () => {
+            document.removeEventListener('mouseenter', handleMouseEnter);
+            document.removeEventListener('mouseout', handleMouseLeave);
+        };
+    }, []);
 
     const renderedPoints = useMemo(() => {
         const dotsRefs = new Map<number, Mesh>();
@@ -45,6 +59,9 @@ export default function Scene() {
     useFrame(({ pointer, viewport }) => {
         const mouseX = (pointer.x * viewport.width) / 2;
         const mouseY = (pointer.y * viewport.height) / 2;
+        const updatePos = (index: number, pos: Vector3) => {
+            pointsAndRelations[index].currentPosition = [pos.x, pos.y, pos.z];
+        };
         
         dots.forEach((mesh, i) => {
             if (!mesh) {
@@ -52,26 +69,30 @@ export default function Scene() {
             }
 
             const position = mesh.position;
-            const dx = position.x - mouseX;
-            const dy = position.y - mouseY;
 
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < 1) {
-                const currentPos = pointsAndRelations[i].currentPosition;
-                const angle = Math.atan2(dy, dx);
-                const strengh =  Math.min(0.05 * (1 - distance) / (distance * distance), 0.12);
+            if (cursorInWindowRef.current) {
+                const dx = position.x - mouseX;
+                const dy = position.y - mouseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
 
-                position.x = currentPos[0] + Math.cos(angle) * strengh;
-                position.y = currentPos[1] + Math.sin(angle) * strengh;
-            } else {
-                const originalPos = pointsAndRelations[i].position;
+                if (distance < 1) {
+                    const currentPos = pointsAndRelations[i].currentPosition;
+                    const angle = Math.atan2(dy, dx);
+                    const strengh =  Math.min(0.05 * (1 - distance) / (distance * distance), 0.12);
 
-                position.x += (position.x - originalPos[0]) * -0.02;
-                position.y += (position.y - originalPos[1]) * -0.02;
+                    position.x = currentPos[0] + Math.cos(angle) * strengh;
+                    position.y = currentPos[1] + Math.sin(angle) * strengh;
+
+                    return updatePos(i, position);
+                }
             }
 
-            pointsAndRelations[i].currentPosition = [mesh.position.x, mesh.position.y, mesh.position.z];
+            const originalPos = pointsAndRelations[i].position;
+
+            position.x += (position.x - originalPos[0]) * -0.02;
+            position.y += (position.y - originalPos[1]) * -0.02;
+
+            updatePos(i, position)
         });
     });
 

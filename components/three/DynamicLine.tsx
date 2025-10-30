@@ -11,14 +11,18 @@ export default function DynamicLine(props: DynamicLineProps) {
     const {startRef, endRef} = props;
     const [line, setLine] = useState<THREE.Line | null>(null);
     const geometryRef = useRef(new THREE.BufferGeometry());
+    const materialRef = useRef(new THREE.LineBasicMaterial({
+        color: "rgb(0, 225, 255)",
+        transparent: true,
+        opacity: 1
+    }))
 
     useEffect(() => {
         const positions = new Float32Array(6);
-        const material = new THREE.LineBasicMaterial({ color: "rgb(0, 225, 255)" });
 
         geometryRef.current.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-        setLine(new THREE.Line(geometryRef.current, material));
+        setLine(new THREE.Line(geometryRef.current, materialRef.current));
     }, []);
 
     useFrame(() => {
@@ -42,12 +46,21 @@ export default function DynamicLine(props: DynamicLineProps) {
         positions[3] = endRef.position.x;
         positions[4] = endRef.position.y;
 
+        const dx = Math.abs(positions[0] - positions[3])
+        const dy = Math.abs(positions[1] - positions[4])
+        const dist = Math.max(dx, dy)
+        const s = 1.2375 - 1.1875 * dist;
+
+        materialRef.current.opacity = Math.max(0, Math.min(s, 1));
+
         geometryRef.current.attributes.position.needsUpdate = true;
     });
 
     return line ? (
         <primitive
             object={line}
+            transparent
+            opacity={.1}
         />
         ) : null;
 }
