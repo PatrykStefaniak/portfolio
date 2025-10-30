@@ -12,17 +12,27 @@ const pointsAndRelations = getPointsAndRelations(AMOUNT_OF_POINTS);
 export default function Scene() {
     const [dots, setDots] = useState<Mesh[]>([]);
     const cursorInWindowRef = useRef(true);
+    const mousePosRef = useRef<{x: number, y: number} | null>(null);
 
     useEffect(() => {
-        const handleMouseEnter = () => cursorInWindowRef.current = true;
-        const handleMouseLeave = () => cursorInWindowRef.current = false;
+        const handleMouseEnter = () => {
+            cursorInWindowRef.current = true;
+        };
+        const handleMouseLeave = () => {
+            cursorInWindowRef.current = false;
+        };
+        const handleMouseMove = (e: MouseEvent) => {
+            mousePosRef.current = { x: e.clientX, y: e.clientY };
+        };
 
+        document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseenter', handleMouseEnter);
-        document.addEventListener('mouseout', handleMouseLeave);
+        document.addEventListener('mouseleave', handleMouseLeave);
 
         return () => {
             document.removeEventListener('mouseenter', handleMouseEnter);
-            document.removeEventListener('mouseout', handleMouseLeave);
+            document.removeEventListener('mouseleave', handleMouseLeave);
+            document.removeEventListener('mousemove', handleMouseMove)
         };
     }, []);
 
@@ -56,9 +66,18 @@ export default function Scene() {
         return jsx;
     }, []);
 
-    useFrame(({ pointer, viewport }) => {
-        const mouseX = (pointer.x * viewport.width) / 2;
-        const mouseY = (pointer.y * viewport.height) / 2;
+    useFrame(({ viewport }) => {
+        if (!mousePosRef.current) {
+            return;
+        }
+
+        const pointer = mousePosRef.current;
+        const x = (pointer.x / window.innerWidth) * 2 - 1;
+        const y = -(pointer.y / window.innerHeight) * 2 + 1;
+
+        const mouseX = (x * viewport.width) / 2;
+        const mouseY = (y * viewport.height) / 2;
+
         const updatePos = (index: number, pos: Vector3) => {
             pointsAndRelations[index].currentPosition = [pos.x, pos.y, pos.z];
         };
