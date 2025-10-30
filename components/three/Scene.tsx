@@ -6,7 +6,7 @@ import { Mesh, Vector3 } from 'three';
 import DynamicLine from './DynamicLine';
 import { getPointsAndRelations } from '@/lib/utils';
 
-const AMOUNT_OF_POINTS = 100;
+const AMOUNT_OF_POINTS = 150;
 const pointsAndRelations = getPointsAndRelations(AMOUNT_OF_POINTS);
 
 export default function Scene() {

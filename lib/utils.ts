@@ -3,7 +3,7 @@ import { Point, PointAndRelation } from "@/types/types";
 export function getPointsAndRelations(amountOfPoints: number): PointAndRelation[] {
     let i = 0;
     const points: PointAndRelation[] = Array.from({ length: amountOfPoints }, () => {
-        const pos = [Math.random() * 17 - 8.5, Math.random() * 7 - 3.5, 0] as [number, number, number];
+        const pos = [Math.random() * 17.75 - 8.875, Math.random() * 7.75 - 3.875, 0] as [number, number, number];
         const point: PointAndRelation = {
             index: i,
             position: pos,
