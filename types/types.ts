@@ -7,3 +7,13 @@ export type Point = {
 export type PointAndRelation = Point & {
     relatedTo: (Point & { distance: number })[]
 };
+
+export type Project = {
+    header: string
+    text: string
+    imageAlt: string
+    imageSrc: string
+    demoUrl?: string
+    codeUrl: string
+    technology?: string[]
+}

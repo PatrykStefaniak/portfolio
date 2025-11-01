@@ -18,5 +18,29 @@
 }
 
 html, body, #container {
-  @apply w-full h-full m-0 p-0;
+  @apply w-full m-0 p-0;
+}
+
+.border-separator {
+  border-top: 1px solid;
+  border-image: linear-gradient(
+    to right,
+    var(--bg) 20%,
+    var(--highlight) 50%,
+    var(--bg) 80%
+  ) 1;
+}
+
+@theme {
+  --animate-fade-in: fade-in 3s;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-50%);
+    },
+    100% {
+      opacity: translateY(0);
+    }
+  }
 }
