@@ -5,7 +5,7 @@ export default function Card(props: Project) {
     const { header, text, imageAlt, imageSrc, demoUrl, codeUrl, technology }  = props;
 
     return (
-        <div>
+        <div className="bg-(--bg-lighter)">
             <div>{header}</div>
             <div>
                 <Image

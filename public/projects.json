@@ -9,7 +9,7 @@
             "technology": ["Next.js", "Tailwind", "Typescript"],
             "demoUrl": "https://weather-api-nextjs-ts.vercel.app/"
         },{
-            "header": "WeatherNalsi",
+            "header": "WeatherNalsi2",
             "text": "Weather app Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
             "imageAlt": "weather app image",
             "imageSrc": "/weathernalsi.png",
@@ -17,7 +17,7 @@
             "technology": ["Next.js", "Tailwind", "Typescript"],
             "demoUrl": "https://weather-api-nextjs-ts.vercel.app/"
         },{
-            "header": "WeatherNalsi",
+            "header": "WeatherNalsi3",
             "text": "Weather app Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
             "imageAlt": "weather app image",
             "imageSrc": "/weathernalsi.png",
