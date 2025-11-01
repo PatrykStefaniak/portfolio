@@ -6,7 +6,7 @@ export default function ProjectList() {
     const gridRowsClass = "grid-rows-[" + (Projects.length * 3 + 1) + "]";
 
     return (
-        <section className="p-px hidden">
+        <section className="p-px">
             {/* <div className="absolute inset-0 -z-10 bg-red-900/40"></div> */}
             <div className={"bg-(--bg-light)/95 my-[20vh] mx-auto w-[80vw] py-20 rounded-xl animate-fade-in shadow-2xl border-t border-(--border-muted)"}>
                 <div className={`sm:w-[60%] mx-auto gap-3 grid grid-cols-2 ${gridRowsClass} grid-flow-row`}>
