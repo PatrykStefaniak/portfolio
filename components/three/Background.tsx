@@ -1,17 +1,17 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber';
-// import { OrbitControls } from '@react-three/drei';
 import Scene from './Scene';
+import AnimatedZoom from './animation/AnimateZoom';
 
 export default function Background() {
-
     return (
         <Canvas>
             <ambientLight />
             <directionalLight position={[0, 0, 5]} />
-            <Scene />
-            {/* <OrbitControls /> */}
+            <AnimatedZoom>
+                <Scene />
+            </AnimatedZoom>
         </Canvas>
     );
 };

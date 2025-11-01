@@ -38,7 +38,7 @@ export default function Scene() {
 
     const renderedPoints = useMemo(() => {
         const dotsRefs = new Map<number, Mesh>();
-        const jsx = pointsAndRelations.map((pointAndRelations, index) => {
+        return pointsAndRelations.map((pointAndRelations, index) => {
             return (
                 <mesh
                     key={index}
@@ -62,8 +62,6 @@ export default function Scene() {
                 </mesh>
             );
         });
-
-        return jsx;
     }, []);
 
     useFrame(({ viewport }) => {
