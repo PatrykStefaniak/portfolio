@@ -7,6 +7,7 @@
   --bg-lighter: oklch(0.3 0.025 270);
   --text: oklch(0.96 0.05 270);
   --text-muted: oklch(0.76 0.05 270);
+  --text-dark: oklch(0.50 0.05 270);
   --highlight: oklch(0.5 0.05 270);
   --border: oklch(0.4 0.05 270);
   --border-muted: oklch(0.3 0.05 270);
