@@ -2,7 +2,7 @@
 
 import { Canvas } from '@react-three/fiber';
 import Scene from './Scene';
-import AnimatedZoom from './animation/AnimateZoom';
+import AnimatedZoom from '../ui/animation/AnimateZoom';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Background() {

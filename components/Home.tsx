@@ -1,4 +1,4 @@
-import Background from "./Background";
+import Background from "./three/Background";
 import ProjectList from "./projects/List";
 
 export default function Main() {
