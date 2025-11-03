@@ -3,31 +3,12 @@
 import { Canvas } from '@react-three/fiber';
 import Scene from './Scene';
 import AnimatedZoom from '../ui/animation/AnimateZoom';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
 export default function Background() {
     const refCanvasContainer = useRef<HTMLDivElement | null>(null);
-    const [isInView, setIsInView] = useState(false);
-
-    useEffect(() => {
-        if (!refCanvasContainer.current) {
-            return;
-        }
-
-        const observer = new IntersectionObserver(
-            ([entry]) => setIsInView(entry.isIntersecting),
-            { threshold: 0 }
-        );
-        const canvas = refCanvasContainer.current.querySelector('canvas');
-
-        if (canvas) {
-            observer.observe(canvas);
-        }
-
-        return () => {
-            observer.disconnect();
-        }
-    }, []);
+    const isInView = useIntersectionObserver(refCanvasContainer);
 
     return (
         <div ref={refCanvasContainer} className='w-full h-full'>
