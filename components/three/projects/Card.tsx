@@ -1,43 +1,18 @@
+import LinkButton from "@/components/ui/LinkButton";
 import { Project } from "@/types/types";
+import { Code, Play } from "lucide-react";
 import Image from "next/image";
 
 const technologyColors = {
-    javascript: {
-        border: "border-yellow-700",
-        background: "bg-yellow-100/80",
-    },
-    html: {
-        border: "border-orange-700",
-        background: "bg-orange-100/80",
-    },
-    css: {
-        border: "border-cyan-700",
-        background: "bg-cyan-100/80",
-    },
-    react: {
-        border: "border-cyan-700",
-        background: "bg-cyan-100/80",
-    },
-    "next.js": {
-        border: "border-stone-700",
-        background: "bg-stone-100/80",
-    },
-    "three.js": {
-        border: "border-slate-700",
-        background: "bg-slate-100/80",
-    },
-    "three fiber": {
-        border: "border-cyan-700",
-        background: "bg-cyan-100/80",
-    },
-    tailwind: {
-        border: "border-sky-700",
-        background: "bg-sky-100/80",
-    },
-    default: {
-        border: "border-lime-700",
-        background: "bg-lime-100/80",
-    }
+    javascript: "border-yellow-400 bg-yellow-100/80 shadow-[0_0_7px_yellow]",
+    html: "border-orange-400 bg-orange-100/80 shadow-[0_0_7px_orange]",
+    css: "border-cyan-400 bg-cyan-100/80 shadow-[0_0_7px_cyan]",
+    react: "border-cyan-400 bg-cyan-100/80 shadow-[0_0_7px_cyan]",
+    "next.js": "border-green-500 bg-green-100/80 shadow-[0_0_7px_lightgreen]",
+    "three.js": "border-fuchsia-700 bg-fuchsia-100/80 shadow-[0_0_7px_fuchsia]",
+    "three fiber": "border-cyan-400 bg-cyan-100/80 shadow-[0_0_7px_cyan]",
+    tailwind: "border-sky-500 bg-sky-100/80 shadow-[0_0_7px_lightblue]",
+    default: "border-pink-400 bg-lime-100/80 shadow-[0_0_7px_pink]",
 };
 
 type Technology = keyof typeof technologyColors;
@@ -46,7 +21,7 @@ export default function Card(props: Project) {
     const { header, text, imageAlt, imageSrc, demoUrl, codeUrl, technology }  = props;
 
     return (
-        <div className="bg-(--bg-lighter) rounded-xl overflow-auto">
+        <div className="bg-(--bg-lighter)/70 rounded-xl overflow-auto animate-fly-from-left shadow-2xl">
             <div>
                 <Image
                     className="w-full max-h-40"
@@ -61,15 +36,13 @@ export default function Card(props: Project) {
                 <div>
                     {text}
                 </div>
-                <div className="flex gap-2 my-[10px]">
+                <div className="flex gap-2 my-5">
                     {
                         (technology || []).map((tech, index) => {
-                            const colors = technologyColors[tech.toLowerCase() as Technology] || technologyColors.default;
-                            const bg = colors.background;
-                            const border = colors.border;
+                            const styles = technologyColors[tech.toLowerCase() as Technology] || technologyColors.default;
 
                             return <div
-                                className={`border-1 p-[5px] rounded-full text-(--text-dark) ${bg} ${border}`}
+                                className={`border-2 p-[5px] rounded-full text-(--text-dark) ${styles} cursor-default`}
                                 key={index}
                             >
                                 {tech}
@@ -77,19 +50,20 @@ export default function Card(props: Project) {
                         })
                     }
                 </div>
-                <div className="flex gap-2 flex-row-reverse">
+                <div className="flex gap-2 flex-row-reverse mt-6">
                     <div>
-                        <a
-                            className="border-1 border-(--border) rounded p-[10px]"
-                            href={codeUrl}
-                        >
-                            Code
-                        </a>
+                        <LinkButton
+                            url={codeUrl}
+                            text={"Code"}
+                            icon={<Code/>}
+                        />
                     </div>
                     {demoUrl && (
-                        <div>
-                            <a href={demoUrl}>Demo</a>
-                        </div>
+                        <LinkButton
+                            url={demoUrl}
+                            text={"Demo"}
+                            icon={<Play/>}
+                        />
                     )}
                 </div>
             </div>
