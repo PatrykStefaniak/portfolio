@@ -1,4 +1,4 @@
-import {Projects} from "@/public/projects.json";
+import {Projects} from "./projects.json";
 import Card from "./Card";
 import { Project } from "@/types/types";
 

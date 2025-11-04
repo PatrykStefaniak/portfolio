@@ -51,13 +51,11 @@ export default function Card(props: Project) {
                     }
                 </div>
                 <div className="flex gap-2 flex-row-reverse mt-6">
-                    <div>
-                        <LinkButton
-                            url={codeUrl}
-                            text={"Code"}
-                            icon={<Code/>}
-                        />
-                    </div>
+                    {codeUrl && (<LinkButton
+                        url={codeUrl}
+                        text={"Code"}
+                        icon={<Code/>}
+                    />)}
                     {demoUrl && (
                         <LinkButton
                             url={demoUrl}

@@ -40,7 +40,6 @@ html, body, #container {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border);
   border: 1px solid transparent;
   background-clip: content-box;
 }
