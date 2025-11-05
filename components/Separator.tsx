@@ -9,6 +9,7 @@ export default function Separator() {
 
     return (
         <section
+            id="separator"
             className="border-separator w-full h-[150vh] bg-linear-to-b from-(--bg)/95 from-40% via-80% via-(--bg-lighter)/90 to-(transparent)"
         >
             <div ref={elRef} className="w-[90%] sm:w-[55%] mx-auto p-px">

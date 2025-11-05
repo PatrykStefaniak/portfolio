@@ -112,4 +112,21 @@ html, body, #container {
   @keyframes progress {
     to { height: 100%; }
   };
+
+  --animate-chevron-fly-down: chevron-fly-down 2s;
+
+  @keyframes chevron-fly-down {
+    20% {
+      transform: translateY(-40vh) rotate(0);
+    }
+    30% {
+      transform: translateY(-40vh) rotate(180deg);
+    }
+    40% {
+      transform: translateY(-40vh) rotate(360deg);
+    }
+    100% {
+      transform: translateY(500vh);
+    }
+  }
 }
