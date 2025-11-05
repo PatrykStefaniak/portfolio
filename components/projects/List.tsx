@@ -6,11 +6,11 @@ export default function ProjectList() {
     return (
         <section className="p-px">
             <div className={"bg-(--bg-light)/90 my-[20vh] mx-auto w-[80vw] py-20 rounded-xl shadow-2xl border-t border-(--border-muted)"}>
-                <div className={`sm:w-[65%] mx-auto gap-x-15 grid grid-cols-2 grid-flow-row`}>
+                <div className={`w-full lg:w-[85%] mx-auto gap-x-25 gap-y-35 md:gap-y-0 grid md:grid-cols-2 grid-cols-1 grid-flow-row`}>
                     {(Projects as Project[]).map((project, index) => {
                         const col = index == 0 || index % 2 == 0
                             ? "col-start-1 animate-fly-from-left"
-                            : "col-start-2 animate-fly-from-right";
+                            : "col-start-1 md:col-start-2 animate-fly-from-right";
 
                         return (
                             <div

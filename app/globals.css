@@ -89,7 +89,7 @@ html, body, #container {
       transform: translateX(10%) rotate(5deg);
     }
     100% {
-      transform: translateX(0) rotate(-2deg);
+      transform: translateX(0) rotate(-1deg);
     }
   }
 
@@ -103,7 +103,7 @@ html, body, #container {
       transform: translateX(-10%) rotate(-5deg);
     }
     100% {
-      transform: translateX(0) rotate(5deg);
+      transform: translateX(0) rotate(3deg);
     }
   }
 

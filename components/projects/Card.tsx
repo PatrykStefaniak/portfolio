@@ -24,9 +24,9 @@ export default function Card(props: Project) {
         <div className="bg-(--bg-lighter)/70 rounded-xl overflow-auto animate-fly-from-left shadow-2xl">
             <div>
                 <Image
-                    className="w-full max-h-40"
+                    className="max-h-40 mx-auto object-fill"
                     height="400"
-                    width="200"
+                    width="400"
                     alt={imageAlt}
                     src={imageSrc}
                 />
