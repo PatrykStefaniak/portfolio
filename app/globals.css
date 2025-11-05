@@ -26,22 +26,7 @@ html, body, #container {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: transparent;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  border: 1px solid transparent;
-  background-clip: content-box;
+  display: none;
 }
 
 .border-separator {
@@ -58,6 +43,13 @@ html, body, #container {
   animation-fill-mode: forwards;
   animation-timeline: view();
   animation-range: entry 0% cover 40%;
+}
+
+.animate-progress {
+  animation-duration: auto;
+  animation-timing-function: linear;
+  animation-timeline: scroll(root);
+  height: 0;
 }
 
 @theme {
@@ -114,4 +106,10 @@ html, body, #container {
       transform: translateX(0) rotate(5deg);
     }
   }
+
+  --animate-progress: progress;
+
+  @keyframes progress {
+    to { height: 100%; }
+  };
 }
