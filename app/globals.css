@@ -119,9 +119,6 @@ html, body, #container {
     20% {
       transform: translateY(-40vh) rotate(0);
     }
-    30% {
-      transform: translateY(-40vh) rotate(180deg);
-    }
     40% {
       transform: translateY(-40vh) rotate(360deg);
     }

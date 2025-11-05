@@ -4,7 +4,7 @@ import { useRef } from "react";
 import DownChevron from "./ui/DownChevron";
 
 export default function Welcome() {
-    const timeoutRef = useRef<Timeout | null>(null);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const onContinueDown = () => {
         if (timeoutRef.current) {
