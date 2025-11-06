@@ -8,7 +8,7 @@ import useScrollAfterDelay from "./hooks/useScrollAfterDelay";
 export default function Separator() {
     const elRef = useRef<HTMLDivElement | null>(null);
     const isInView = useIntersectionObserver(elRef);
-    const doScroll = useScrollAfterDelay({selector: "#projects", block: "start"});
+    const doScroll = useScrollAfterDelay({selector: "#about", block: "start"});
 
     const onContinueDown = () => {
         doScroll();

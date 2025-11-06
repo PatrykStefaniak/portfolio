@@ -126,4 +126,25 @@ html, body, #container {
       transform: translateY(500vh);
     }
   }
+
+  --animate-slow-reverse-invert: slow-reverse-invert .5s forwards;
+  --animate-slow-invert: slow-invert 3s forwards;
+
+  @keyframes slow-invert {
+    0% {
+      filter: invert(0)
+    }
+    100% {
+      filter: invert(1)
+    }
+  }
+
+  @keyframes slow-reverse-invert {
+    0% {
+      filter: invert(1)
+    }
+    100% {
+      filter: invert(0)
+    }
+  }
 }

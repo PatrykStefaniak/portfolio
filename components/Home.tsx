@@ -1,19 +1,31 @@
+"use client";
+
 import Background from "./three/Background";
 import ProjectList from "./projects/List";
 import Welcome from "./Welcome";
 import Separator from "./Separator";
 import ProgressBar from "./ProgressBar";
+import About from "./about/About";
+import { useRef } from "react";
+import useIntersectionObserver from "./hooks/useIntersectionObserver";
 
 export default function Main() {
+    const backgroundRef = useRef<HTMLDivElement | null>(null);
+    const isInView = useIntersectionObserver(backgroundRef);
 
     return <div id="container" className="overflow-clip">
-        <div className="bg-radial-[at_5%_5%] to-(--bg) from-(--bg-light) fixed inset-0 ">
+        <div
+            className={`${isInView ? "animate-slow-invert" : "animate-slow-reverse-invert"} bg-radial-[at_5%_5%] to-(--bg) from-(--bg-light) fixed inset-0`}
+        >
             <Background/>
         </div>
         <main className="z-10 relative">
             <ProgressBar/>
             <Welcome/>
             <Separator/>
+            <About
+                ref={backgroundRef}
+            />
             <ProjectList/>
         </main>
     </div>
