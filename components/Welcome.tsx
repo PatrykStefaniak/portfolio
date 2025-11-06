@@ -1,22 +1,13 @@
 "use client";
 
-import { useRef } from "react";
 import DownChevron from "./ui/DownChevron";
+import useScrollAfterDelay from "./hooks/useScrollAfterDelay";
 
 export default function Welcome() {
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const doScroll = useScrollAfterDelay({selector: "#separator"});
 
     const onContinueDown = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-
-        timeoutRef.current = setTimeout(() => {
-            document.querySelector("#separator")?.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }, 1000);
+        doScroll();
     };
 
     return (
@@ -27,11 +18,9 @@ export default function Welcome() {
                     This is my work-in-progress portfolio website.
                 </div>
             </div>
-            <div className="animate-fade-in" style={{ animationDuration: "6s" }}>
-                <DownChevron
-                    handler={onContinueDown}
-                />
-            </div>
+            <DownChevron
+                handler={onContinueDown}
+            />
         </section>
     );
 }

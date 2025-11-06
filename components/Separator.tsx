@@ -2,10 +2,17 @@
 
 import { useRef } from "react";
 import useIntersectionObserver from "./hooks/useIntersectionObserver";
+import DownChevron from "./ui/DownChevron";
+import useScrollAfterDelay from "./hooks/useScrollAfterDelay";
 
 export default function Separator() {
     const elRef = useRef<HTMLDivElement | null>(null);
     const isInView = useIntersectionObserver(elRef);
+    const doScroll = useScrollAfterDelay({selector: "#projects", block: "start"});
+
+    const onContinueDown = () => {
+        doScroll();
+    };
 
     return (
         <section
@@ -14,11 +21,15 @@ export default function Separator() {
         >
             <div ref={elRef} className="w-[90%] sm:w-[55%] mx-auto p-px">
                 {isInView && (
-                    <div className="animate-fade-in sm:w-[60vh] mx-auto py-[5vh] sm:py-[500vh] mt-[65vh] sm:mt-[40vh] px-5 sm:p-20 bg-(--bg-lighter)/30 text-(--text) text-center mt-[25vh] rounded-xl shadow-2xl border-t border-(--border-muted)">
+                    <div className="animate-fade-in sm:w-[60vh] mx-auto py-[5vh] sm:py-[10vh] sm:mt-[50vh] mt-[60vh] sm:mt-[40vh] px-5 sm:p-20 bg-(--bg-lighter)/30 text-(--text) text-center mt-[25vh] rounded-xl shadow-2xl border-t border-(--border-muted)">
                         <h2 className="text-md">I love picking up new challanges, especially logical ones. My last one was Three js, as you may be able to tell by the background!</h2>
                     </div>
                 )}
             </div>
+            {isInView && <DownChevron
+                handler={onContinueDown}
+                isLight
+            />}
         </section>
     );
 }

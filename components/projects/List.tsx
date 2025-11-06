@@ -4,9 +4,9 @@ import { Project } from "@/types/types";
 
 export default function ProjectList() {
     return (
-        <section className="p-px">
+        <section id="projects" className="pt-[50vh] p-px">
             <div className={"bg-(--bg-light)/90 my-[20vh] mx-auto w-[80vw] py-20 rounded-xl shadow-2xl border-t border-(--border-muted)"}>
-                <div className={`w-full lg:w-[85%] mx-auto gap-x-25 gap-y-35 md:gap-y-0 flex sm:grid md:grid-cols-2 grid-cols-1 grid-flow-row`}>
+                <div className={`w-full lg:w-[85%] mx-auto gap-x-25 gap-y-10 md:gap-y-0 flex flex-col sm:grid md:grid-cols-2 grid-cols-1 grid-flow-row`}>
                     {(Projects as Project[]).map((project, index) => {
                         const col = index == 0 || index % 2 == 0
                             ? "col-start-1 animate-fly-from-left"
