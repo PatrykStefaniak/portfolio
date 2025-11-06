@@ -14,7 +14,7 @@ export default function Separator() {
         >
             <div ref={elRef} className="w-[90%] sm:w-[55%] mx-auto p-px">
                 {isInView && (
-                    <div className="animate-fade-in sm:w-[60vh] mx-auto py-[500vh] mt-[40vh] px-5 sm:p-20 bg-(--bg-lighter)/30 text-(--text) text-center mt-[25vh] rounded-xl shadow-2xl border-t border-(--border-muted)">
+                    <div className="animate-fade-in sm:w-[60vh] mx-auto py-[5vh] sm:py-[500vh] mt-[65vh] sm:mt-[40vh] px-5 sm:p-20 bg-(--bg-lighter)/30 text-(--text) text-center mt-[25vh] rounded-xl shadow-2xl border-t border-(--border-muted)">
                         <h2 className="text-md">I love picking up new challanges, especially logical ones. My last one was Three js, as you may be able to tell by the background!</h2>
                     </div>
                 )}
