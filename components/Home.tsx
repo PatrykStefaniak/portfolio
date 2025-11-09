@@ -10,8 +10,8 @@ import { useRef } from "react";
 import useIntersectionObserver from "./hooks/useIntersectionObserver";
 
 export default function Main() {
-    const backgroundRef = useRef<HTMLDivElement | null>(null);
-    const isInView = useIntersectionObserver(backgroundRef);
+    const aboutRef = useRef<HTMLDivElement | null>(null);
+    const isInView = useIntersectionObserver(aboutRef);
 
     return <div id="container" className="overflow-clip">
         <div
@@ -24,7 +24,7 @@ export default function Main() {
             <Welcome/>
             <Separator/>
             <About
-                ref={backgroundRef}
+                ref={aboutRef}
             />
             <ProjectList/>
         </main>
