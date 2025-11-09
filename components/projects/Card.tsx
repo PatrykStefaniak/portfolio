@@ -22,9 +22,9 @@ export default function Card(props: Project) {
 
     return (
         <div className="bg-(--bg-lighter)/70 rounded-xl overflow-auto animate-fly-from-left shadow-2xl">
-            <div>
+            <div className="m-2">
                 <Image
-                    className="max-h-40 mx-auto object-fill"
+                    className="max-h-40 mx-auto object-fill rounded-md"
                     height="400"
                     width="400"
                     alt={imageAlt}
@@ -42,7 +42,7 @@ export default function Card(props: Project) {
                             const styles = technologyColors[tech.toLowerCase() as Technology] || technologyColors.default;
 
                             return <div
-                                className={`border-2 p-[5px] rounded-full text-(--text-dark) ${styles} cursor-default`}
+                                className={`glint-effect border-2 p-[5px] rounded-full text-(--text-dark) ${styles} cursor-default`}
                                 key={index}
                             >
                                 {tech}

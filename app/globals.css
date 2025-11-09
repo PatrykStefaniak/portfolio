@@ -39,6 +39,32 @@ html, body, #container {
   ) 1;
 }
 
+.glint-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.glint-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.glint-effect:hover::before {
+  left: 100%;
+}
+
 .animate-fly-from-left, .animate-fly-from-right {
   animation-fill-mode: forwards;
   animation-timeline: view();
@@ -127,7 +153,7 @@ html, body, #container {
     }
   }
 
-  --animate-slow-reverse-invert: slow-reverse-invert .5s forwards;
+  --animate-slow-reverse-invert: slow-reverse-invert 0.5s forwards;
   --animate-slow-invert: slow-invert 3s forwards;
 
   @keyframes slow-invert {
@@ -135,13 +161,13 @@ html, body, #container {
       filter: invert(0)
     }
     100% {
-      filter: invert(1)
+      filter: invert(.8)
     }
   }
 
   @keyframes slow-reverse-invert {
     0% {
-      filter: invert(1)
+      filter: invert(.8)
     }
     100% {
       filter: invert(0)
