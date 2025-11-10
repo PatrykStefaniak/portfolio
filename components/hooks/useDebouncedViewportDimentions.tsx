@@ -12,7 +12,13 @@ export default function useDebouncedViewportDimentions(debounceTime: number = 50
         }
 
         timeoutRef.current = setTimeout(() => {
-            setDimentions([viewport.width, viewport.height]);
+            setDimentions((currentDimentions) => {
+                if (currentDimentions[0] !== viewport.width || currentDimentions[1] !== viewport.height) {
+                    return [viewport.width, viewport.height];
+                }
+
+                return currentDimentions;
+            });
         }, debounceTime);
     }, [viewport.width, viewport.height, debounceTime]);
 
