@@ -5,11 +5,14 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Mesh, Vector3 } from 'three';
 import DynamicLine from './DynamicLine';
 import { getPointsAndRelations } from '@/lib/utils';
-
-const AMOUNT_OF_POINTS = 150;
-const pointsAndRelations = getPointsAndRelations(AMOUNT_OF_POINTS);
+import useDebouncedViewportDimentions from '../hooks/useDebouncedViewportDimentions';
 
 export default function Scene() {
+    const viewportDimentions = useDebouncedViewportDimentions();
+    const pointsAndRelations = useMemo(() => {
+        return getPointsAndRelations(viewportDimentions[0], viewportDimentions[1])
+    }, [viewportDimentions]);
+    const currentPositionsRef = useRef(pointsAndRelations.map(p => [...p.position]));
     const [dots, setDots] = useState<Mesh[]>([]);
     const cursorInWindowRef = useRef(true);
     const mousePosRef = useRef<{x: number, y: number} | null>(null);
@@ -47,11 +50,14 @@ export default function Scene() {
                             dotsRefs.set(index, el);
 
                             if (dotsRefs.size === pointsAndRelations.length) {
-                                const mapEntries = [...dotsRefs.entries()];
+                                setDots(
+                                    Array.from(
+                                        { length: pointsAndRelations.length },
+                                        (el, i) => dotsRefs.get(i)
+                                    ).filter((ref) => ref != undefined)
+                                );
 
-                                mapEntries.sort((a, b) => a[0] - b[0]);
-
-                                setDots(Array.from(new Map(mapEntries).values()));
+                                dotsRefs.clear();
                             }
                         }
                     }}
@@ -62,7 +68,7 @@ export default function Scene() {
                 </mesh>
             );
         });
-    }, []);
+    }, [pointsAndRelations]);
 
     useFrame(({ viewport }) => {
         if (!mousePosRef.current) {
@@ -77,7 +83,7 @@ export default function Scene() {
         const mouseY = (y * viewport.height) / 2;
 
         const updatePos = (index: number, pos: Vector3) => {
-            pointsAndRelations[index].currentPosition = [pos.x, pos.y, pos.z];
+            currentPositionsRef.current[index] = [pos.x, pos.y, pos.z];
         };
         
         dots.forEach((mesh, i) => {
@@ -90,12 +96,13 @@ export default function Scene() {
             if (cursorInWindowRef.current) {
                 const dx = position.x - mouseX;
                 const dy = position.y - mouseY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+                const distance = dx * dx + dy * dy;
 
                 if (distance < 1) {
-                    const currentPos = pointsAndRelations[i].currentPosition;
+                    const distanceSqrt = Math.sqrt(distance);
+                    const currentPos = currentPositionsRef.current[i];
                     const angle = Math.atan2(dy, dx);
-                    const strengh =  Math.min(0.05 * (1 - distance) / (distance * distance), 0.12);
+                    const strengh =  Math.min(0.05 * (1 - distanceSqrt) / (distanceSqrt * distanceSqrt), 0.12);
 
                     position.x = currentPos[0] + Math.cos(angle) * strengh;
                     position.y = currentPos[1] + Math.sin(angle) * strengh;
@@ -118,15 +125,13 @@ export default function Scene() {
             {renderedPoints}
             {
                 dots.length && pointsAndRelations.map((pointAndRelations, index) => (
-                    pointAndRelations.relatedTo.map((targetData, targetIndex) => {
-                        return (
-                            <DynamicLine
-                                key={index + "relation" + targetIndex}
-                                startRef={dots[pointAndRelations.index]}
-                                endRef={dots[targetData.index]}
-                            />
-                        );
-                    })
+                    pointAndRelations.relatedTo.map((targetData, targetIndex) => (
+                        <DynamicLine
+                            key={index + "relation" + targetIndex}
+                            startRef={dots[pointAndRelations.index]}
+                            endRef={dots[targetData.index]}
+                        />
+                    ))
                 ))
             }
         </group>

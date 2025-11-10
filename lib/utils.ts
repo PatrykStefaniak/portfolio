@@ -1,9 +1,14 @@
 import { Point, PointAndRelation } from "@/types/types";
 
-export function getPointsAndRelations(amountOfPoints: number): PointAndRelation[] {
+export function getPointsAndRelations(width: number, height: number): PointAndRelation[] {
     let i = 0;
-    const points: PointAndRelation[] = Array.from({ length: amountOfPoints }, () => {
-        const pos = [Math.random() * 17.75 - 8.875, Math.random() * 7.75 - 3.875, 0] as [number, number, number];
+    const padding = .5;
+    const points: PointAndRelation[] = Array.from({ length: Math.ceil(width * height) }, () => {
+        const pos = [
+            Math.random() * (width + padding * 2) - (width / 2 + padding),
+            Math.random() * (height + padding * 2) - (height / 2 + padding),
+            0
+        ] as [number, number, number];
         const point: PointAndRelation = {
             index: i,
             position: pos,

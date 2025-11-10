@@ -143,10 +143,10 @@ html, body, #container {
 
   @keyframes chevron-fly-down {
     20% {
-      transform: translateY(-40vh) rotate(0);
+      transform: translateY(-10vh) rotate(0);
     }
     40% {
-      transform: translateY(-40vh) rotate(360deg);
+      transform: translateY(-10vh) rotate(360deg);
     }
     100% {
       transform: translateY(500vh);
