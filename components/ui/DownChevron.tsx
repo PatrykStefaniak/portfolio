@@ -35,7 +35,7 @@ export default function DownChevron(props: DownChevronProps) {
     return (
         <div className="animate-fade-in" style={{ animationDuration: "6s" }}>
             <div
-                className={`${animation} ${bgColor} animate-bounce rounded-full w-14 h-14 mx-auto mt-[20vh] flex justify-center items-center cursor-pointer hover:scale-120`}
+                className={`${animation} ${bgColor} animate-bounce rounded-full w-14 h-14 mx-auto relative bottom-10 mt-[20vh] flex justify-center items-center cursor-pointer hover:scale-120`}
                 onClick={handleClick}
             >
                 <ChevronDown color={"var(--highlight)"} />

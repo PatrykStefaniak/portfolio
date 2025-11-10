@@ -14,40 +14,36 @@ export default function About(props: AboutProps) {
         <section
             id="about"
             ref={ref}
-            className={`${isInView ? "animate-fade-in" : "opacity-0"} sm:w-[80vw] mx-auto mt-20 border-t border-stone-50 bg-stone-200/85 p-5 sm:p-20 rounded-xl shadow-xl`}
+            className={`${isInView ? "animate-fade-in" : "opacity-0"} sm:w-[75vw] mx-auto mt-20 border-t border-stone-50 bg-stone-200/85 p-5 sm:p-20 sm:rounded-xl shadow-xl`}
         >
-            <div className="border-b-3 border-color-(--border) w-80 pb-1">
-                <div className="text-3xl font-semibold border-b-3 border-color-(--border) w-65">
-                    <h2>More about me</h2>
-                </div>
+            <div className="w-full flex flex-col mb-10">
+                <h2 className="mx-auto text-4xl font-semibold text-shadow-lg text-shadow-(--border)">More About Me</h2>
+                <div className="mt-2 mx-auto border-b-3 border-(--highlight) w-15 shadow-[0_0_10px_rgba(0,0,0,1)]"/>
             </div>
-            <div className="gap-y-5 flex flex-col mt-5">
+            <div>
                 <p>
                     I am a Frontend Developer with 5 years of professional experience building enterprise web applications.
                     Skilled in JavaScript, React, ExtJs, and modern frontend workflows. I&apos;ve implemented and optimized
                     applications for customer-facing websites, led frontend development for complex multi-user VoIP
                     dashboards, and developed and integrated Web CRM solutions with Salesforce among others.
                 </p>
-                <p>
+                <Image
+                    className="float-left mr-3 mt-5"
+                    src={"/me.jpg"}
+                    alt={"Image of a handsome frontend developer"}
+                    width={200}
+                    height={400}
+                />
+                <p className="mt-5">
                     With a background in developing software for a telecomunications company, I had the chance to gain
-                    plenty of experience with <b>SaaS</b> and <b>CRM</b> oriented web apps.
-                    I&apos;m always excited to learn new technologies and always striving to improve, as I believe that self improvement,
-                    not only on a professional level, but also on a personal level is key to accomplishment.
-                    Confident in my abilities but open to criticism and to both mentoring and to being mentored.
+                    plenty of experience with <b>SaaS</b> and <b>CRM</b>-oriented web applications.
+                    I&apos;m always excited to learn new technologies and constantly strive to improve, not just professionally, but personally as well.
+                    I believe self-improvement is key to genuine accomplishment.
+                    I&apos;m confident in my abilities, but also open to feedback, collaboration, and both mentoring and being mentored.
                 </p>
-                <div className="flex gap-5">
-                    <p className="mt-5 flex-3">
-                        
-                    </p>
-                    <div className="flex-1">
-                        <Image
-                            src={"/me.jpg"}
-                            alt={"Image of a handsome frontend developer"}
-                            width={200}
-                            height={400}
-                        />
-                    </div>
-                </div>
+                <p className="mt-5">
+                    When I&apos;m away from the computer, I love working out, stuff like running, weight lifting, bouldering and swimming. I&apos;m also into social psychology and philosophy audio books, love motorcycling, catching a pretty sunset/ sunrise, hiking, and occasionally gaming.
+                </p>
             </div>
         </section>
     )

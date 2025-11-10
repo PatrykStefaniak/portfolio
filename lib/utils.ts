@@ -3,7 +3,7 @@ import { Point, PointAndRelation } from "@/types/types";
 export function getPointsAndRelations(width: number, height: number): PointAndRelation[] {
     let i = 0;
     const padding = .5;
-    const points: PointAndRelation[] = Array.from({ length: Math.ceil(width * height) }, () => {
+    const points: PointAndRelation[] = Array.from({ length: Math.ceil(width * height) + 10 }, () => {
         const pos = [
             Math.random() * (width + padding * 2) - (width / 2 + padding),
             Math.random() * (height + padding * 2) - (height / 2 + padding),

@@ -19,10 +19,10 @@ export default function Separator() {
             id="separator"
             className="border-separator w-full h-[150vh] bg-linear-to-b from-(--bg)/95 from-40% via-80% via-(--bg-lighter)/90 to-(transparent)"
         >
-            <div ref={elRef} className="w-[90%] sm:w-[55%] mx-auto p-px">
+            <div ref={elRef} className="w-[90vw] sm:w-[65vw] mx-auto p-px">
                 {isInView && (
-                    <div className="animate-fade-in sm:w-[60vh] mx-auto py-[5vh] sm:py-[10vh] sm:mt-[50vh] mt-[60vh] sm:mt-[40vh] px-5 sm:p-20 bg-(--bg-lighter)/30 text-(--text) text-center mt-[25vh] rounded-xl shadow-2xl border-t border-(--border-muted)">
-                        <h2 className="text-md">I love picking up new challanges, especially logical ones. My last one was Three js, as you may be able to tell by the background!</h2>
+                    <div className="animate-fade-in sm:w-[70vh] mx-auto py-[5vh] sm:py-[10vh] sm:mt-[45vh] mt-[50vh] sm:mt-[40vh] px-5 sm:p-20 bg-(--bg-lighter)/30 text-(--text) text-center text-lg mt-[25vh] rounded-xl shadow-2xl border-t border-(--border-muted)">
+                        <h2 className="text-md">I love picking up new challanges, especially logical ones. Doesn&apos;t matter if it&apos;s a complex layout, 3D web app, or a leet code style algorithm, solving those types of challanges is really fun and rewarding to me</h2>
                     </div>
                 )}
             </div>
