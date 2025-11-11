@@ -4,15 +4,15 @@ import { Code, Play } from "lucide-react";
 import Image from "next/image";
 
 const technologyColors = {
-    javascript: "border-yellow-400 bg-yellow-100/80 shadow-[0_0_7px_yellow]",
-    html: "border-orange-400 bg-orange-100/80 shadow-[0_0_7px_orange]",
-    css: "border-cyan-400 bg-cyan-100/80 shadow-[0_0_7px_cyan]",
-    react: "border-cyan-400 bg-cyan-100/80 shadow-[0_0_7px_cyan]",
-    "next.js": "border-green-500 bg-green-100/80 shadow-[0_0_7px_lightgreen]",
-    "three.js": "border-fuchsia-700 bg-fuchsia-100/80 shadow-[0_0_7px_fuchsia]",
-    "three fiber": "border-cyan-400 bg-cyan-100/80 shadow-[0_0_7px_cyan]",
-    tailwind: "border-sky-500 bg-sky-100/80 shadow-[0_0_7px_lightblue]",
-    default: "border-pink-400 bg-lime-100/80 shadow-[0_0_7px_pink]",
+    javascript: "border-yellow-400 bg-yellow-100/80 shadow-[0_0_6px_yellow]",
+    html: "border-orange-400 bg-orange-100/80 shadow-[0_0_6px_orange]",
+    css: "border-cyan-400 bg-cyan-100/80 shadow-[0_0_6px_cyan]",
+    react: "border-cyan-400 bg-cyan-100/80 shadow-[0_0_6px_cyan]",
+    "next.js": "border-green-500 bg-green-100/80 shadow-[0_0_6px_lightgreen]",
+    "three.js": "border-fuchsia-700 bg-fuchsia-100/80 shadow-[0_0_6px_fuchsia]",
+    "three fiber": "border-cyan-400 bg-cyan-100/80 shadow-[0_0_6px_cyan]",
+    tailwind: "border-sky-500 bg-sky-100/80 shadow-[0_0_6px_lightblue]",
+    default: "border-pink-400 bg-pink-100/80 shadow-[0_0_6px_pink]",
 };
 
 type Technology = keyof typeof technologyColors;
@@ -36,13 +36,13 @@ export default function Card(props: Project) {
                 <div>
                     {text}
                 </div>
-                <div className="flex gap-2 my-5">
+                <div className="my-5 py-4 px-2 flex flex-wrap max-h-15 gap-2 gap-y-5 overflow-hidden">
                     {
                         (technology || []).map((tech, index) => {
                             const styles = technologyColors[tech.toLowerCase() as Technology] || technologyColors.default;
 
                             return <div
-                                className={`glint-effect border-2 p-[5px] rounded-full text-(--text-dark) ${styles} cursor-default`}
+                                className={`text-stone-900 glint-effect border-2 p-[5px] rounded-full text-(--text-dark) ${styles} cursor-default min-w-16 text-center`}
                                 key={index}
                             >
                                 {tech}

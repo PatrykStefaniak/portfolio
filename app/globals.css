@@ -92,6 +92,17 @@ html, body, #container {
     }
   };
 
+  --animate-fade-in-flat: fade-in 3s;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  };
+
   --animate-slide-fade-in: slide-fade-in 3s;
 
   @keyframes slide-fade-in {
@@ -173,4 +184,25 @@ html, body, #container {
       filter: invert(0)
     }
   }
+
+  --animate-fade-in-n-out: fade-in-n-out 10s;
+
+  @keyframes fade-in-n-out {
+    0% {
+      opacity: 0;
+      transform: translateY(10%);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(10%);
+    }
+  };
 }

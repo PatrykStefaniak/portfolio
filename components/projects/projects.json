@@ -15,12 +15,11 @@
             "imageSrc": "/projects/bmw.svg"
         },{
             "header": "Portfolio",
-            "text": "My portfolio website featuring a modern design, animations and threejs",
+            "text": "My portfolio website featuring a modern design, css animations and threejs",
             "imageAlt": "Portfolio app home",
             "imageSrc": "/projects/portfolio.png",
             "codeUrl": "https://github.com/PatrykStefaniak/portfolio",
-            "technology": ["Next.js", "Tailwind", "Typescript"],
-            "demoUrl": "https://patrykstefaniak-portfolio.vercel.app/"
+            "technology": ["Next.js", "Tailwind", "Typescript", "Three.js"]
         }
     ]
 }

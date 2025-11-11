@@ -28,7 +28,7 @@ export default function Separator() {
             </div>
             {isInView && <DownChevron
                 handler={onContinueDown}
-                isLight
+                bgColor="bg-(--bg)/50"
             />}
         </section>
     );

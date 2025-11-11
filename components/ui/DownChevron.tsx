@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 
 type DownChevronProps = {
     handler: () => void
-    isLight?: boolean
+    bgColor?: string
 };
 
 export default function DownChevron(props: DownChevronProps) {
     const [animate, setAnimate] = useState(false);
-    const {handler, isLight} = props;
+    const {handler, bgColor = "bg-(--bg-dark)/90"} = props;
 
     const handleClick = () => {
         setAnimate(true);
@@ -30,7 +30,6 @@ export default function DownChevron(props: DownChevronProps) {
     }, [animate]);
 
     const animation = animate ? "animate-chevron-fly-down" : "";
-    const bgColor = isLight ? "bg-(--bg)/50" : "bg-(--bg-dark)/90";
 
     return (
         <div className="animate-fade-in" style={{ animationDuration: "6s" }}>

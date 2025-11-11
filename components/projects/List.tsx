@@ -4,7 +4,7 @@ import { Project } from "@/types/types";
 
 export default function ProjectList() {
     return (
-        <section id="projects" className="pt-[50vh] p-px">
+        <section id="projects" className="pt-[20vh] p-px">
             <div className={"flex flex-col bg-(--bg-light)/90 my-[20vh] mx-auto w-[80vw] py-10 rounded-xl shadow-2xl border-t border-(--border-muted)"}>
                 <div className="m-auto pt-5 pb-20 ">
                     <div className="text-5xl text-(--text) text-shadow-lg text-shadow-(color:--highlight)">
