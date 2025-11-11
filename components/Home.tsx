@@ -8,6 +8,7 @@ import ProgressBar from "./ProgressBar";
 import About from "./about/About";
 import { useRef } from "react";
 import useIntersectionObserver from "./hooks/useIntersectionObserver";
+import NavMenu from "./NavMenu";
 
 export default function Main() {
     const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -20,6 +21,7 @@ export default function Main() {
             <Background/>
         </div>
         <main className="z-10 relative">
+            <NavMenu/>
             <ProgressBar/>
             <Welcome/>
             <Separator/>

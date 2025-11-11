@@ -205,4 +205,21 @@ html, body, #container {
       transform: translateY(10%);
     }
   };
+
+  --animate-menu-slide-out: menu-slide-out 0.4s ease-out forwards;
+
+  @keyframes menu-slide-out {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(var(--final-x), 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--final-x), var(--final-y)) scale(1);
+    opacity: 1;
+  }
+}
 }
