@@ -9,6 +9,7 @@ import About from "./about/About";
 import { useRef } from "react";
 import useIntersectionObserver from "./hooks/useIntersectionObserver";
 import NavMenu from "./NavMenu";
+import { getInvertAnimation } from "@/lib/utils";
 
 export default function Main() {
     const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -16,13 +17,13 @@ export default function Main() {
 
     return <div id="container" className="overflow-clip">
         <div
-            className={`${isInView ? "animate-slow-invert" : "animate-slow-reverse-invert"} bg-radial-[at_5%_5%] to-(--bg) from-(--bg-light) fixed inset-0`}
+            className={`${getInvertAnimation(isInView)} bg-radial-[at_5%_5%] to-(--bg) from-(--bg-light) fixed inset-0`}
         >
             <Background/>
         </div>
         <main className="z-10 relative">
-            <NavMenu/>
-            <ProgressBar/>
+            <NavMenu invert={isInView} />
+            <ProgressBar invert={isInView} />
             <Welcome/>
             <Separator/>
             <About

@@ -46,3 +46,7 @@ export function getPointsAndRelations(width: number, height: number): PointAndRe
 
     return points;
 };
+
+export function getInvertAnimation(doInvert: boolean) {
+    return doInvert ? "animate-slow-invert" : "animate-slow-reverse-invert"
+}

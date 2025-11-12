@@ -1,8 +1,14 @@
 'use client';
 
+import { getInvertAnimation } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
-export default function ProgressBar() {
+type ProgressBarProps = {
+    invert: boolean
+}
+
+export default function ProgressBar(props: ProgressBarProps) {
+    const {invert} = props;
     const [isDragging, setIsDragging] = useState(false);
     const progressBarRef = useRef<HTMLDivElement | null>(null)
 
@@ -56,7 +62,7 @@ export default function ProgressBar() {
         <div 
             ref={progressBarRef}
             onMouseDown={handleMouseDown}
-            className="fixed top-0 right-0 h-full w-[8px] bg-(--border-muted)"
+            className={`${getInvertAnimation(invert)} fixed top-0 right-0 h-full w-[8px] bg-(--border-muted)`}
         >
             <div 
                 className="animate-progress h-0 border-4 border-(--border) "

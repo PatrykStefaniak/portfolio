@@ -92,9 +92,9 @@ html, body, #container {
     }
   };
 
-  --animate-fade-in-flat: fade-in 3s;
+  --animate-fade-in-flat: fade-in-flat 3s;
 
-  @keyframes fade-in {
+  @keyframes fade-in-flat {
     0% {
       opacity: 0;
     }
@@ -206,20 +206,19 @@ html, body, #container {
     }
   };
 
-  --animate-menu-slide-out: menu-slide-out 0.4s ease-out forwards;
+  --aniamte-nav-in: nav-in 3s;
 
-  @keyframes menu-slide-out {
-  0% {
-    transform: translate(0, 0) scale(0);
-    opacity: 0;
+  @keyframes nav-in {
+    0% {
+      opacity: 0;
+      background-image: linear-gradient(to right, var(--bg-dar) 0%, var(--bg) 0%, transparent 0%);;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      background-image: linear-gradient(to right, var(--bg-dar) 40%, var(--bg) 80%, transparent);
+      opacity: 1;
+    }
   }
-  50% {
-    transform: translate(var(--final-x), 0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--final-x), var(--final-y)) scale(1);
-    opacity: 1;
-  }
-}
 }
